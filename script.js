@@ -9,8 +9,6 @@ window.onpointermove = event => {
   }, { duration: 3000, fill: "forwards" });
 }
 
-/* -- Text effect -- */
-
 const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 let interval = null;

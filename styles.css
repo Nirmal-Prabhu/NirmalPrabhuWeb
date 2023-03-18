@@ -55,3 +55,29 @@ h1 {
   translate: -50% -50%;
   z-index: 3;
 }
+
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: clamp(3rem, 6vw, 10rem);
+    padding: 0rem clamp(2rem, 4vw, 6rem);
+  }
+}
+
+/* Laptops and larger screens */
+@media screen and (min-width: 1024px) {
+  #blob {
+    height: 70vh;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 5vw, 10rem);
+    padding: 0rem clamp(3rem, 3vw, 8rem);
+  }
+}
+
+
+
+
+
+
+

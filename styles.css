@@ -1,68 +1,10 @@
-/* body {
-  background-color: black;
-  height: 100vh;
-  margin: 0rem;
-  overflow: hidden; 
-}
-
-@keyframes rotate {
-  from {
-    rotate: 0deg;
-  }
-  
-  50% {
-    scale: 1 1.5;
-  }
-  
-  to {
-    rotate: 360deg;
-  }
-}
-
-#blob {
-  background-color: white;
-  height: 100vh;
-  aspect-ratio: 1;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  translate: -50% -50%;
-  border-radius: 50%;
-  background: linear-gradient(to right, aquamarine, mediumpurple);
-  animation: rotate 20s infinite;
-  opacity: 0.8;
-}
-
-#blur {
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  z-index: 2;
-  backdrop-filter: blur(12vmax);
-}
-
-h1 {
-  font-family: 'Space Mono', monospace;
-  font-size: clamp(3rem, 10vw, 10rem);
-  color: white;
-  white-space: nowrap;
-  padding: 0rem clamp(1rem, 2vw, 3rem);
-  border-radius: clamp(0.4rem, 0.75vw, 1rem);
-  margin: 0rem;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  translate: -50% -50%;
-  z-index: 3;
-}
- */
-
- body {
+body {
   font-family: 'Space Mono', monospace;
   background-color: black;
   color: white;
   margin: 0;
   overflow-x: hidden;
+  position: relative;
 }
 
 header {
@@ -105,7 +47,7 @@ nav ul li a {
   background-color: white;
   height: 100vh;
   aspect-ratio: 1;
-  position: fixed; /* Changed from absolute to fixed */
+  position: fixed; /* Ensure it stays fixed */
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -113,7 +55,7 @@ nav ul li a {
   background: linear-gradient(to right, aquamarine, mediumpurple);
   animation: rotate 20s infinite;
   opacity: 0.8;
-  z-index: 1;
+  z-index: 1; /* Below the blur */
 }
 
 @keyframes rotate {
@@ -129,11 +71,13 @@ nav ul li a {
 }
 
 #blur {
-  height: 100%;
-  width: 100%;
-  position: fixed; /* Changed from absolute to fixed */
-  z-index: 2;
-  backdrop-filter: blur(12vmax);
+  position: fixed; /* Ensure it covers the full viewport */
+  top: 0;
+  left: 0;
+  height: 100vh; /* Ensure it covers the full height */
+  width: 100%; /* Ensure it covers the full width */
+  backdrop-filter: blur(12vmax); /* Apply the blur effect */
+  z-index: 2; /* Ensure it stays above the blob but below the content */
 }
 
 h1 {
@@ -144,6 +88,7 @@ h1 {
   border-radius: clamp(0.4rem, 0.75vw, 1rem);
   margin: 0;
   position: relative; /* Ensures h1 is positioned correctly within the intro section */
+  z-index: 3; /* Ensures this content is above the blur */
 }
 
 section {
@@ -154,8 +99,8 @@ section {
   color: black;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  position: relative; /* Ensures sections are above the blur */
-  z-index: 3;
+  position: relative; /* Ensure sections stay above the blur */
+  z-index: 3; /* Above the blur */
 }
 
 section h2 {
@@ -176,41 +121,3 @@ section p {
 footer {
   text-align: center;
   padding: 10px 0;
-  background-color: #222;
-  color: white;
-  position: relative; /* Ensures footer is positioned correctly */
-  z-index: 3;
-  width: 100%;
-  bottom: 0;
-}
-
-form label, form input, form textarea, form button {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-form input, form textarea {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-form button {
-  padding: 10px;
-  background-color: #E50914;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-form button:hover {
-  background-color: #d40813;
-}
-
-
-
-
-
-

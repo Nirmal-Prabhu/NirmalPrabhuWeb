@@ -57,7 +57,6 @@ h1 {
 }
  */
 
-
  body {
   font-family: 'Space Mono', monospace;
   background-color: black;
@@ -99,13 +98,14 @@ nav ul li a {
   align-items: center;
   text-align: center;
   position: relative;
+  z-index: 3; /* Ensures this content is above the blur */
 }
 
 #blob {
   background-color: white;
   height: 100vh;
   aspect-ratio: 1;
-  position: absolute;
+  position: fixed; /* Changed from absolute to fixed */
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -131,7 +131,7 @@ nav ul li a {
 #blur {
   height: 100%;
   width: 100%;
-  position: absolute;
+  position: fixed; /* Changed from absolute to fixed */
   z-index: 2;
   backdrop-filter: blur(12vmax);
 }
@@ -143,11 +143,7 @@ h1 {
   padding: 0 clamp(1rem, 2vw, 3rem);
   border-radius: clamp(0.4rem, 0.75vw, 1rem);
   margin: 0;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3;
+  position: relative; /* Ensures h1 is positioned correctly within the intro section */
 }
 
 section {
@@ -158,8 +154,8 @@ section {
   color: black;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative; /* Ensures sections are above the blur */
   z-index: 3;
-  position: relative;
 }
 
 section h2 {
@@ -182,7 +178,8 @@ footer {
   padding: 10px 0;
   background-color: #222;
   color: white;
-  position: fixed;
+  position: relative; /* Ensures footer is positioned correctly */
+  z-index: 3;
   width: 100%;
   bottom: 0;
 }
@@ -211,8 +208,6 @@ form button {
 form button:hover {
   background-color: #d40813;
 }
-
-
 
 
 

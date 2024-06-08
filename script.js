@@ -37,3 +37,22 @@ document.querySelector("h1").onmouseover = event => {
     iteration += 1 / 3;
   }, 30);
 }
+
+// Scroll animation for sections
+const sections = document.querySelectorAll("section");
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    } else {
+      entry.target.classList.remove("visible");
+    }
+  });
+}, {
+  threshold: 0.1 // Trigger when 10% of the section is visible
+});
+
+sections.forEach(section => {
+  observer.observe(section);
+});

@@ -89,7 +89,7 @@ document.querySelector(".intro-text").onmouseover = event => {
     }
     
     iteration += 1 / 3;
-  }, 10);
+  }, 30);
 }
 
 // Scroll animation for sections
@@ -161,6 +161,21 @@ wrapper.addEventListener('mouseleave', () => {
 });
 
 
+//enlarge on hover
+
+const shapes = document.querySelectorAll('.shape-container');
+const label = document.getElementById('shape-label');
+
+shapes.forEach((shape) => {
+  shape.addEventListener('mouseenter', () => {
+    label.textContent = shape.querySelector('.shape').dataset.label;
+    label.style.display = 'block';
+  });
+
+  shape.addEventListener('mouseleave', () => {
+    label.style.display = 'none';
+  });
+});
 
 
 

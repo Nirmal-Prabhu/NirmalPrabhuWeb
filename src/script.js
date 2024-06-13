@@ -1,4 +1,3 @@
-
 //gorgeous mouse pointer animation
 
 const canvas = document.getElementById('renderSurface');
@@ -9,16 +8,17 @@ let myFluid = new Fluid(canvas);
 
 myFluid.mapBehaviors({
   sim_resolution: 128,
-  dye_resolution: 1024,
+  dye_resolution: 2048,
 
   paused: false,
   embedded_dither: true,
 
   dissipation: .97,
   velocity: .98,
-  pressure: .8,
+  pressure: 0.8,
   pressure_iteration: 20,
-  curl: 0,
+  fluid_color:[[10,0,0],[0,0,10]],
+  curl: 0.5,
   emitter_size: 0.5,
 
   render_shaders: true,
@@ -27,10 +27,10 @@ myFluid.mapBehaviors({
   render_bloom: false,
   bloom_iterations: 8,
   bloom_resolution: 256,
-  intensity: 1.8,
-  threshold: 0.6,
-  soft_knee: 0.7,
-
+  intensity: 1.1,
+  threshold: 10.6,
+  soft_knee: 10.7,
+  
   background_color: { r: 0, g: 0, b: 0 },
   transparent: false
 });
@@ -67,7 +67,7 @@ const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 let interval = null;
 
-document.querySelector("h1").onmouseover = event => {  
+document.querySelector(".intro-text").onmouseover = event => {  
   let iteration = 0;
   
   clearInterval(interval);
@@ -111,6 +111,54 @@ sections.forEach(section => {
   observer.observe(section);
 });
 
+const wrapper = document.getElementById("wrapper");
+
+const rand = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
+
+const uniqueRand = (min, max, prev) => {
+  let next = prev;
+  
+  while(prev === next) next = rand(min, max);
+  
+  return next;
+}
+
+const combinations = [
+  { configuration: 1, roundness: 1 },
+  { configuration: 1, roundness: 2 },
+  { configuration: 1, roundness: 4 },
+  { configuration: 2, roundness: 2 },
+  { configuration: 2, roundness: 3 },
+  { configuration: 3, roundness: 3 }
+];
+
+let prev = 0;
+
+let shapesinterval;
+
+
+const startInterval = () => {
+  shapesinterval = setInterval(() => {
+    const index = uniqueRand(0, combinations.length - 1, prev),
+          combination = combinations[index];
+    
+    wrapper.dataset.configuration = combination.configuration;
+    wrapper.dataset.roundness = combination.roundness;
+    
+    prev = index;
+  }, 3000);
+};
+
+// Start interval when page loads
+startInterval();
+
+wrapper.addEventListener('mouseenter', () => {
+  clearInterval(shapesinterval);
+});
+
+wrapper.addEventListener('mouseleave', () => {
+  startInterval();
+});
 
 
 
